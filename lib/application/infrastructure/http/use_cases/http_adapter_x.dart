@@ -211,34 +211,4 @@ class HttpAdapter implements HttpClientX {
 
     return Future.value(futureResponse);
   }
-
-  paginatedSearch(
-      {required String url,
-      required String searchedValue,
-      required int numberOfResults,
-      required int pageNumber,
-      String? orderBy,
-      String? direction}) async {
-    String token =
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb2lAZ21haWwuY29tIiwiYXVkIjoiMSIsImV4cCI6MTY0NDE0Njg0M30.Opdi1aw_L33C7O4Z8Et-jyS9AKRI4rTjKj0RCKUGYJ6wM1zrPvEkQkrOFFqdpOKBsX4bUJUaqbELbcHEXSog8Q';
-    Map<String, String>? headers = {
-      "Accept": "application/json",
-      "content-type": "application/json",
-      "key": "Content-Type",
-      "value": "application/json",
-      "type": "text",
-      "authorization": 'Bearer ' + token,
-    };
-    Map<String, String>? parameters = {
-      "q": searchedValue,
-      "page": pageNumber.toString(),
-      "linesPerPage": numberOfResults.toString(),
-      "OrderBy": orderBy!,
-      "direction": direction!
-    };
-    var response =
-        await get(uri: url, headers: headers, parameters: parameters);
-
-    return Future.value(response);
-  }
 }
